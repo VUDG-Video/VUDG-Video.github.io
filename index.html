@@ -11,12 +11,13 @@
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <style>
     .qa-container {
-      max-height: 400px;
+      max-height: 200px;
       overflow-y: auto;
       padding: 10px;
       border: 1px solid #ddd;
       border-radius: 5px;
       background-color: #f9f9f9;
+      margin-bottom: 20px;
     }
     .qa-item {
       margin-bottom: 15px;
@@ -138,29 +139,26 @@
               <video id="video-1" controls width="100%">
                 Your browser does not support the video tag.
               </video>
+              <div class="qa-container" id="qa-1"></div>
             </div>
             <div class="column is-full">
               <video id="video-2" controls width="100%">
                 Your browser does not support the video tag.
               </video>
+              <div class="qa-container" id="qa-2"></div>
             </div>
             <div class="column is-full">
               <video id="video-3" controls width="100%">
                 Your browser does not support the video tag.
               </video>
+              <div class="qa-container" id="qa-3"></div>
             </div>
             <div class="column is-full">
               <video id="video-4" controls width="100%">
                 Your browser does not support the video tag.
               </video>
+              <div class="qa-container" id="qa-4"></div>
             </div>
-          </div>
-        </div>
-
-        <!-- 右边：QA 展示区域 -->
-        <div class="column is-half">
-          <div class="qa-container" id="qa-container">
-            <!-- QA 内容将动态加载到这里 -->
           </div>
         </div>
       </div>
@@ -174,7 +172,7 @@
     const selectedCategory = document.getElementById('category-select').value;
     console.log('Selected Category:', selectedCategory); // 调试信息
 
-    // 加载视频
+    // 加载视频和 QA 对
     for (let i = 1; i <= 4; i++) {
       const videoPath = `./static/videos/${selectedCategory}_${i}.mp4?${Math.random()}`; // 避免缓存
       console.log(`Video ${i} Path:`, videoPath); // 调试信息
@@ -182,13 +180,11 @@
       const videoElement = document.getElementById(`video-${i}`);
       videoElement.innerHTML = `<source src="${videoPath}" type="video/mp4">`;
       videoElement.load();
-    }
 
-    // 加载 QA 对
-    const qaContainer = document.getElementById('qa-container');
-    qaContainer.innerHTML = ''; // 清空之前的内容
+      // 加载 QA 对
+      const qaContainer = document.getElementById(`qa-${i}`);
+      qaContainer.innerHTML = ''; // 清空之前的内容
 
-    for (let i = 1; i <= 4; i++) {
       const qaPath = `./static/QAs/${selectedCategory}_${i}.txt`;
       console.log(`QA ${i} Path:`, qaPath); // 调试信息
 
@@ -198,25 +194,20 @@
         const text = await response.text();
         const qaPairs = text.split('\n').filter(line => line.trim() !== ''); // 按行分割并过滤空行
 
-        // 创建 QA 对容器
-        const qaItem = document.createElement('div');
-        qaItem.className = 'qa-item';
-        qaItem.innerHTML = `<h3 class="title is-5">Video ${i} QA</h3>`;
-
         // 解析并添加 QA 对
         for (let j = 0; j < qaPairs.length; j += 2) {
           const question = qaPairs[j].replace('Q:', '').trim();
           const answer = qaPairs[j + 1].replace('A:', '').trim();
-          qaItem.innerHTML += `
-            <p class="question">Q: ${question}</p>
-            <p class="answer">A: ${answer}</p>
+          qaContainer.innerHTML += `
+            <div class="qa-item">
+              <p class="question">Q: ${question}</p>
+              <p class="answer">A: ${answer}</p>
+            </div>
           `;
         }
-
-        qaContainer.appendChild(qaItem);
       } catch (error) {
         console.error(`Failed to load QA for Video ${i}:`, error);
-        qaContainer.innerHTML += `<p class="has-text-danger">Failed to load QA for Video ${i}.</p>`;
+        qaContainer.innerHTML = `<p class="has-text-danger">Failed to load QA for Video ${i}.</p>`;
       }
     }
   });
