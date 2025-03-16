@@ -9,6 +9,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <style>
+    .qa-container {
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .qa-item {
+      margin-bottom: 15px;
+    }
+    .qa-item p {
+      margin: 5px 0;
+    }
+    .qa-item p.question {
+      font-weight: bold;
+      color: #3273dc;
+    }
+    .qa-item p.answer {
+      color: #363636;
+    }
+  </style>
 </head>
 <body>
 
@@ -79,7 +102,7 @@
     <h2 class="title is-2">Dataset Examples</h2>
     <div class="content">
       <p>
-        Select a category from the dropdown menu and click "Preview" to view the corresponding videos.
+        Select a category from the dropdown menu and click "Preview" to view the corresponding videos and QA pairs.
       </p>
 
       <!-- 选项栏和预览按钮 -->
@@ -106,87 +129,95 @@
         </div>
       </div>
 
-      <!-- 视频展示区域 -->
-      <div class="columns is-multiline" id="video-grid" style="margin-top: 20px;">
+      <!-- 左右布局 -->
+      <div class="columns">
+        <!-- 左边：视频展示区域 -->
         <div class="column is-half">
-          <video id="video-1" controls width="100%">
-            Your browser does not support the video tag.
-          </video>
+          <div class="columns is-multiline" id="video-grid" style="margin-top: 20px;">
+            <div class="column is-full">
+              <video id="video-1" controls width="100%">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-full">
+              <video id="video-2" controls width="100%">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-full">
+              <video id="video-3" controls width="100%">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="column is-full">
+              <video id="video-4" controls width="100%">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
         </div>
+
+        <!-- 右边：QA 展示区域 -->
         <div class="column is-half">
-          <video id="video-2" controls width="100%">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div class="column is-half">
-          <video id="video-3" controls width="100%">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div class="column is-half">
-          <video id="video-4" controls width="100%">
-            Your browser does not support the video tag.
-          </video>
+          <div class="qa-container" id="qa-container">
+            <!-- QA 内容将动态加载到这里 -->
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 标题 3: Benchmark 评测结果 -->
-<section class="section">
-  <div class="container">
-    <h2 class="title is-2">Benchmark Results</h2>
-    <div class="content">
-      <p>
-        We evaluate several state-of-the-art video understanding models on the <b>VUDG</b> dataset. 
-        The results demonstrate the effectiveness of our dataset in benchmarking and advancing video analysis research.
-      </p>
-      <table class="table is-bordered is-striped">
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>Accuracy</th>
-            <th>mAP</th>
-            <th>FPS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Model A</td>
-            <td>85.3%</td>
-            <td>78.2</td>
-            <td>24</td>
-          </tr>
-          <tr>
-            <td>Model B</td>
-            <td>88.7%</td>
-            <td>81.5</td>
-            <td>18</td>
-          </tr>
-          <tr>
-            <td>Model C</td>
-            <td>90.1%</td>
-            <td>83.4</td>
-            <td>20</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
 <!-- JavaScript 实现交互 -->
 <script>
-  document.getElementById('preview-button').addEventListener('click', function () {
-    // 获取用户选择的栏目
+  document.getElementById('preview-button').addEventListener('click', async function () {
     const selectedCategory = document.getElementById('category-select').value;
+    console.log('Selected Category:', selectedCategory); // 调试信息
 
-    // 更新四个视频的路径
+    // 加载视频
     for (let i = 1; i <= 4; i++) {
+      const videoPath = `./static/videos/${selectedCategory}_${i}.mp4?${Math.random()}`; // 避免缓存
+      console.log(`Video ${i} Path:`, videoPath); // 调试信息
+
       const videoElement = document.getElementById(`video-${i}`);
-      videoElement.innerHTML = `<source src="./static/videos/${selectedCategory}_${i}.mp4" type="video/mp4">`;
+      videoElement.innerHTML = `<source src="${videoPath}" type="video/mp4">`;
       videoElement.load();
+    }
+
+    // 加载 QA 对
+    const qaContainer = document.getElementById('qa-container');
+    qaContainer.innerHTML = ''; // 清空之前的内容
+
+    for (let i = 1; i <= 4; i++) {
+      const qaPath = `./static/QAs/${selectedCategory}_${i}.txt`;
+      console.log(`QA ${i} Path:`, qaPath); // 调试信息
+
+      try {
+        const response = await fetch(qaPath);
+        if (!response.ok) throw new Error('File not found');
+        const text = await response.text();
+        const qaPairs = text.split('\n').filter(line => line.trim() !== ''); // 按行分割并过滤空行
+
+        // 创建 QA 对容器
+        const qaItem = document.createElement('div');
+        qaItem.className = 'qa-item';
+        qaItem.innerHTML = `<h3 class="title is-5">Video ${i} QA</h3>`;
+
+        // 解析并添加 QA 对
+        for (let j = 0; j < qaPairs.length; j += 2) {
+          const question = qaPairs[j].replace('Q:', '').trim();
+          const answer = qaPairs[j + 1].replace('A:', '').trim();
+          qaItem.innerHTML += `
+            <p class="question">Q: ${question}</p>
+            <p class="answer">A: ${answer}</p>
+          `;
+        }
+
+        qaContainer.appendChild(qaItem);
+      } catch (error) {
+        console.error(`Failed to load QA for Video ${i}:`, error);
+        qaContainer.innerHTML += `<p class="has-text-danger">Failed to load QA for Video ${i}.</p>`;
+      }
     }
   });
 </script>
