@@ -17,7 +17,7 @@
       border: 1px solid #ddd;
       border-radius: 5px;
       background-color: #f9f9f9;
-      margin-bottom: 20px;
+      margin-top: 10px;
     }
     .qa-item {
       margin-bottom: 15px;
@@ -31,6 +31,9 @@
     }
     .qa-item p.answer {
       color: #363636;
+    }
+    .video-qa-pair {
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -130,36 +133,38 @@
         </div>
       </div>
 
-      <!-- 左右布局 -->
-      <div class="columns">
-        <!-- 左边：视频展示区域 -->
-        <div class="column is-half">
-          <div class="columns is-multiline" id="video-grid" style="margin-top: 20px;">
-            <div class="column is-full">
-              <video id="video-1" controls width="100%">
-                Your browser does not support the video tag.
-              </video>
-              <div class="qa-container" id="qa-1"></div>
-            </div>
-            <div class="column is-full">
-              <video id="video-2" controls width="100%">
-                Your browser does not support the video tag.
-              </video>
-              <div class="qa-container" id="qa-2"></div>
-            </div>
-            <div class="column is-full">
-              <video id="video-3" controls width="100%">
-                Your browser does not support the video tag.
-              </video>
-              <div class="qa-container" id="qa-3"></div>
-            </div>
-            <div class="column is-full">
-              <video id="video-4" controls width="100%">
-                Your browser does not support the video tag.
-              </video>
-              <div class="qa-container" id="qa-4"></div>
-            </div>
-          </div>
+      <!-- 2x2 网格布局 -->
+      <div class="columns is-multiline" id="video-qa-grid" style="margin-top: 20px;">
+        <!-- 视频 1 和 QA 1 -->
+        <div class="column is-half video-qa-pair">
+          <video id="video-1" controls width="100%">
+            Your browser does not support the video tag.
+          </video>
+          <div class="qa-container" id="qa-1"></div>
+        </div>
+
+        <!-- 视频 2 和 QA 2 -->
+        <div class="column is-half video-qa-pair">
+          <video id="video-2" controls width="100%">
+            Your browser does not support the video tag.
+          </video>
+          <div class="qa-container" id="qa-2"></div>
+        </div>
+
+        <!-- 视频 3 和 QA 3 -->
+        <div class="column is-half video-qa-pair">
+          <video id="video-3" controls width="100%">
+            Your browser does not support the video tag.
+          </video>
+          <div class="qa-container" id="qa-3"></div>
+        </div>
+
+        <!-- 视频 4 和 QA 4 -->
+        <div class="column is-half video-qa-pair">
+          <video id="video-4" controls width="100%">
+            Your browser does not support the video tag.
+          </video>
+          <div class="qa-container" id="qa-4"></div>
         </div>
       </div>
     </div>
