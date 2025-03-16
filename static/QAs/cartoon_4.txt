@@ -1,0 +1,10 @@
+Q1: What is the main character's profession?
+A1: The main character is a detective.
+Q2: What mystery is being solved?
+A2: The mystery is a stolen painting.
+Q3: What clues are found?
+A3: The clues are a footprint and a torn piece of fabric.
+Q4: Who is the culprit?
+A4: The culprit is the museum curator.
+Q5: What is the final outcome?
+A5: The painting is returned to its owner.
