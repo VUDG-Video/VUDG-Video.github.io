@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
+  <title>VUDG: <b>V</b>ideo <b>U</b>nderstanding <b>D</b>ataset <b>G</b>eneration</title>
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -11,58 +11,127 @@
 </head>
 <body>
 
-<!-- 标题 1: 简介 -->
+<!-- 主标题和作者信息 -->
 <section class="section">
   <div class="container">
-    <h1 class="title">简介</h1>
+    <h1 class="title is-1">VUDG: <b>V</b>ideo <b>U</b>nderstanding <b>D</b>ataset <b>G</b>eneration</h1>
     <div class="content">
-      <p>我们提出了第一个能够从手机拍摄的照片/视频中逼真重建非刚性变形场景的方法。</p>
-      <video controls width="100%">
-        <source src="./static/videos/teaser.mp4" type="video/mp4">
-        您的浏览器不支持视频标签。
-      </video>
+      <p class="is-size-5">
+        <span class="author-block">AAA<sup>1</sup></span>,
+        <span class="author-block">BBB<sup>2</sup></span>,
+        <span class="author-block">CCC<sup>1</sup></span>
+      </p>
+      <p class="is-size-5">
+        <span class="author-block"><sup>1</sup>XXX</span>,
+        <span class="author-block"><sup>2</sup>YYY</span>
+      </p>
+    </div>
+    <!-- Arxiv 链接 -->
+    <div class="buttons is-centered">
+      <a href="https://arxiv.org/abs/XXXX.XXXXX" class="button is-primary">
+        <span class="icon">
+          <i class="ai ai-arxiv"></i>
+        </span>
+        <span>Read on arXiv</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- 标题 2: 视频展示 -->
+<!-- 标题 1: 数据集简介 -->
 <section class="section">
   <div class="container">
-    <h1 class="title">视频展示</h1>
+    <h2 class="title is-2">Dataset Introduction</h2>
     <div class="content">
-      <p>以下是一些使用我们的方法生成的视频示例。</p>
+      <p>
+        We present the <b>VUDG</b> dataset, a large-scale video understanding dataset designed for training and evaluating state-of-the-art video analysis models. 
+        The dataset consists of <b>10,000+</b> high-quality video clips annotated with rich metadata, including object bounding boxes, action labels, and temporal segmentation.
+      </p>
+      <p>
+        Our dataset is designed to address the challenges of video understanding, such as temporal modeling, object tracking, and action recognition. 
+        It is suitable for a wide range of tasks, including video classification, object detection, and temporal action localization.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 标题 2: 数据集示例 -->
+<section class="section">
+  <div class="container">
+    <h2 class="title is-2">Dataset Examples</h2>
+    <div class="content">
+      <p>
+        Below are some examples from the <b>VUDG</b> dataset, showcasing the diversity and quality of the video clips and annotations.
+      </p>
       <div class="columns">
         <div class="column">
           <video controls width="100%">
-            <source src="./static/videos/steve.mp4" type="video/mp4">
-            您的浏览器不支持视频标签。
+            <source src="./static/videos/example_1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
           </video>
+          <p class="has-text-centered"><b>Example 1:</b> Object Tracking</p>
         </div>
         <div class="column">
           <video controls width="100%">
-            <source src="./static/videos/chair-tp.mp4" type="video/mp4">
-            您的浏览器不支持视频标签。
+            <source src="./static/videos/example_2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
           </video>
+          <p class="has-text-centered"><b>Example 2:</b> Action Recognition</p>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <img src="./static/images/example_1.jpg" alt="Example Image 1">
+          <p class="has-text-centered"><b>Example 3:</b> Temporal Segmentation</p>
+        </div>
+        <div class="column">
+          <img src="./static/images/example_2.jpg" alt="Example Image 2">
+          <p class="has-text-centered"><b>Example 4:</b> Object Detection</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 标题 3: 图片展示 -->
+<!-- 标题 3: Benchmark 评测结果 -->
 <section class="section">
   <div class="container">
-    <h1 class="title">图片展示</h1>
+    <h2 class="title is-2">Benchmark Results</h2>
     <div class="content">
-      <p>以下是一些使用我们的方法生成的图片示例。</p>
-      <div class="columns">
-        <div class="column">
-          <img src="./static/images/interpolate_start.jpg" alt="示例图片 1">
-        </div>
-        <div class="column">
-          <img src="./static/images/interpolate_end.jpg" alt="示例图片 2">
-        </div>
-      </div>
+      <p>
+        We evaluate several state-of-the-art video understanding models on the <b>VUDG</b> dataset. 
+        The results demonstrate the effectiveness of our dataset in benchmarking and advancing video analysis research.
+      </p>
+      <table class="table is-bordered is-striped">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Accuracy</th>
+            <th>mAP</th>
+            <th>FPS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Model A</td>
+            <td>85.3%</td>
+            <td>78.2</td>
+            <td>24</td>
+          </tr>
+          <tr>
+            <td>Model B</td>
+            <td>88.7%</td>
+            <td>81.5</td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <td>Model C</td>
+            <td>90.1%</td>
+            <td>83.4</td>
+            <td>20</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
