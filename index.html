@@ -79,18 +79,25 @@
     <h2 class="title is-2">Dataset Examples</h2>
     <div class="content">
       <p>
-        Select an example from the dropdown menu and click "Preview" to view the corresponding video.
+        Select a category from the dropdown menu and click "Preview" to view the corresponding videos.
       </p>
 
       <!-- 选项栏和预览按钮 -->
       <div class="field has-addons">
         <div class="control">
           <div class="select">
-            <select id="video-select">
-              <option value="example_1">Example 1: Object Tracking</option>
-              <option value="example_2">Example 2: Action Recognition</option>
-              <option value="example_3">Example 3: Temporal Segmentation</option>
-              <option value="example_4">Example 4: Object Detection</option>
+            <select id="category-select">
+              <option value="cartoon">Cartoon</option>
+              <option value="egocentric_video">Egocentric Video</option>
+              <option value="foggy">Foggy</option>
+              <option value="game">Game</option>
+              <option value="movie_tv_show">Movie/TV Show</option>
+              <option value="night">Night</option>
+              <option value="rainy">Rainy</option>
+              <option value="shakey">Shakey</option>
+              <option value="snowy">Snowy</option>
+              <option value="surveillance">Surveillance</option>
+              <option value="virtual">Virtual</option>
             </select>
           </div>
         </div>
@@ -100,10 +107,27 @@
       </div>
 
       <!-- 视频展示区域 -->
-      <div class="video-preview has-text-centered" style="margin-top: 20px;">
-        <video id="preview-video" controls width="100%" style="max-width: 800px;">
-          Your browser does not support the video tag.
-        </video>
+      <div class="columns is-multiline" id="video-grid" style="margin-top: 20px;">
+        <div class="column is-half">
+          <video id="video-1" controls width="100%">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="column is-half">
+          <video id="video-2" controls width="100%">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="column is-half">
+          <video id="video-3" controls width="100%">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="column is-half">
+          <video id="video-4" controls width="100%">
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
     </div>
   </div>
@@ -155,16 +179,15 @@
 <!-- JavaScript 实现交互 -->
 <script>
   document.getElementById('preview-button').addEventListener('click', function () {
-    // 获取用户选择的选项
-    const selectedVideo = document.getElementById('video-select').value;
+    // 获取用户选择的栏目
+    const selectedCategory = document.getElementById('category-select').value;
 
-    // 根据选项设置视频路径
-    const videoElement = document.getElementById('preview-video');
-    videoElement.innerHTML = `<source src="./static/videos/${selectedVideo}.mp4" type="video/mp4">`;
-
-    // 加载并播放视频
-    videoElement.load();
-    videoElement.play();
+    // 更新四个视频的路径
+    for (let i = 1; i <= 4; i++) {
+      const videoElement = document.getElementById(`video-${i}`);
+      videoElement.innerHTML = `<source src="./static/videos/${selectedCategory}_${i}.mp4" type="video/mp4">`;
+      videoElement.load();
+    }
   });
 </script>
 
