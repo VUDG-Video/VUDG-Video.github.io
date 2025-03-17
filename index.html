@@ -289,7 +289,7 @@
         <div class="control">
           <div class="select">
             <select id="category-select">
-              <option value="cartoon">Cartoon</option>
+              <option value="cartoon" selected>Cartoon</option>
               <option value="egocentric_video">Egocentric Video</option>
               <option value="foggy">Foggy</option>
               <option value="game">Game</option>
@@ -389,14 +389,10 @@
 
 <!-- JavaScript 实现交互 -->
 <script>
-  // 加载视频和 QA 对
-  document.getElementById('preview-button').addEventListener('click', async function () {
-    const selectedCategory = document.getElementById('category-select').value;
-    console.log('Selected Category:', selectedCategory); // 调试信息
-
-    // 加载视频和 QA 对
+  // 加载指定栏目的视频和 QA 对
+  async function loadCategory(category) {
     for (let i = 1; i <= 4; i++) {
-      const videoPath = `./static/videos/${selectedCategory}_${i}.mp4?${Math.random()}`; // 避免缓存
+      const videoPath = `./static/videos/${category}_${i}.mp4?${Math.random()}`; // 避免缓存
       console.log(`Video ${i} Path:`, videoPath); // 调试信息
 
       const videoElement = document.getElementById(`video-${i}`);
@@ -407,7 +403,7 @@
       const qaContainer = document.getElementById(`qa-${i}`);
       qaContainer.innerHTML = ''; // 清空之前的内容
 
-      const qaPath = `./static/QAs/${selectedCategory}_${i}.txt`;
+      const qaPath = `./static/QAs/${category}_${i}.txt`;
       console.log(`QA ${i} Path:`, qaPath); // 调试信息
 
       try {
@@ -432,8 +428,19 @@
         qaContainer.innerHTML = `<p class="has-text-danger">Failed to load QA for Video ${i}.</p>`;
       }
     }
+  }
+
+  // 页面加载时自动加载 cartoon
+  window.addEventListener('load', () => {
+    loadCategory('cartoon'); // 默认加载 cartoon
   });
 
+  // 切换栏目时重新加载
+  document.getElementById('preview-button').addEventListener('click', () => {
+    const selectedCategory = document.getElementById('category-select').value;
+    loadCategory(selectedCategory); // 加载选中的栏目
+  });
+  
   // 加载 Benchmark 测试结果
   async function loadBenchmarkResults() {
     const benchmarkTable = document.getElementById('benchmark-table');
