@@ -120,27 +120,105 @@
     </div>
     <!-- 图片展示 -->
     <div class="content">
-      <!-- 第一张图：横向贯穿左右 -->
+      <!-- 第一张图：横向贯穿左右，带翻页功能 -->
       <div class="columns">
         <div class="column is-full">
-          <img src="./static/images/categories.png" alt="Image 1" style="width: 100%;">
+          <div class="carousel">
+            <!-- 翻页按钮 -->
+            <div class="carousel-navigation">
+              <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
+              <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
+            </div>
+      
+            <!-- 图片容器 -->
+            <div class="carousel-slides">
+              <div class="carousel-slide active">
+                <img src="./static/images/categories.png" alt="Categories Page 1" style="width: 100%;">
+              </div>
+              <div class="carousel-slide">
+                <img src="./static/images/categories_2.png" alt="Categories Page 2" style="width: 100%;">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    
+      
       <!-- 下方两张图：左右排列 -->
       <div class="columns">
         <div class="column is-half">
-          <img src="./static/images/statistic_1.png" alt="Image 2" style="width: 100%;">
+          <img src="./static/images/statistic_1.jpg" alt="Image 2" style="width: 100%;">
         </div>
         <div class="column is-half">
-          <img src="./static/images/statistic_2.png" alt="Image 3" style="width: 100%;">
+          <img src="./static/images/statistic_2.jpg" alt="Image 3" style="width: 100%;">
         </div>
       </div>
-    
+      
       <!-- 文字输入空间 -->
       <div class="content" style="margin-top: 20px;">
         <p>I should find something to say.</p>
       </div>
+      
+      <!-- 翻页功能样式 -->
+      <style>
+        .carousel {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+        }
+        .carousel-slides {
+          display: flex;
+          transition: transform 0.5s ease;
+        }
+        .carousel-slide {
+          min-width: 100%;
+          box-sizing: border-box;
+        }
+        .carousel-slide img {
+          width: 100%;
+          display: block;
+        }
+        .carousel-navigation {
+          position: absolute;
+          top: 50%;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          transform: translateY(-50%);
+        }
+        .carousel-button {
+          background-color: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          padding: 10px;
+          cursor: pointer;
+          font-size: 18px;
+        }
+        .carousel-button:hover {
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+      </style>
+      
+      <!-- 翻页功能脚本 -->
+      <script>
+        let currentSlide = 0;
+      
+        function showSlide(index) {
+          const slides = document.querySelectorAll('.carousel-slide');
+          if (index >= slides.length) currentSlide = 0;
+          if (index < 0) currentSlide = slides.length - 1;
+          document.querySelector('.carousel-slides').style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+      
+        function nextSlide() {
+          currentSlide++;
+          showSlide(currentSlide);
+        }
+      
+        function prevSlide() {
+          currentSlide--;
+          showSlide(currentSlide);
+        }
+      </script>
     </div>
   </div>
 </section>
