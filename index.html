@@ -132,7 +132,6 @@
       
             <!-- 图片容器 -->
             <div class="carousel-slides">
-              <div class="carousel-dots"></div>
               <div class="carousel-slide active">
                 <img src="./static/images/categories.png" alt="Categories Page 1" style="width: 100%;">
               </div>
@@ -178,22 +177,6 @@
           width: 100%;
           display: block;
         }
-        .carousel-dots {
-          text-align: center;
-          margin-top: 10px;
-        }
-        .carousel-dot {
-          display: inline-block;
-          width: 10px;
-          height: 10px;
-          margin: 0 5px;
-          background-color: #bbb;
-          border-radius: 50%;
-          cursor: pointer;
-        }
-        .carousel-dot.active {
-          background-color: #333;
-        }
         .carousel-navigation {
           position: absolute;
           top: 50%;
@@ -221,21 +204,9 @@
       
         function showSlide(index) {
           const slides = document.querySelectorAll('.carousel-slide');
-          const prevBtn = document.querySelector('.prev');
-          const nextBtn = document.querySelector('.next');
-        
-          // 限制索引范围
-          if (index >= slides.length) currentSlide = slides.length - 1;
-          if (index < 0) currentSlide = 0;
-        
-          // 移动幻灯片
+          if (index >= slides.length) currentSlide = 0;
+          if (index < 0) currentSlide = slides.length - 1;
           document.querySelector('.carousel-slides').style.transform = `translateX(-${currentSlide * 100}%)`;
-        
-          // 控制按钮可见性
-          prevBtn.style.display = currentSlide === 0 ? 'none' : 'block';
-          nextBtn.style.display = currentSlide === slides.length - 1 ? 'none' : 'block';
-        
-          updateDots();
         }
       
         function nextSlide() {
@@ -247,34 +218,6 @@
           currentSlide--;
           showSlide(currentSlide);
         }
-
-        function createDots() {
-          const slides = document.querySelectorAll('.carousel-slide');
-          const dotsContainer = document.querySelector('.carousel-dots');
-          dotsContainer.innerHTML = ''; // 清空现有圆点
-        
-          slides.forEach((_, index) => {
-            const dot = document.createElement('span');
-            dot.classList.add('carousel-dot');
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => {
-              currentSlide = index;
-              showSlide(currentSlide);
-            });
-            dotsContainer.appendChild(dot);
-          });
-        }
-        
-        function updateDots() {
-          const dots = document.querySelectorAll('.carousel-dot');
-          dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
-          });
-        }
-      
-      // 初始化圆点
-      document.addEventListener("DOMContentLoaded", createDots);
-
       </script>
     </div>
   </div>
