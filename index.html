@@ -135,9 +135,15 @@
               <div class="carousel-slide active">
                 <img src="./static/images/categories.png" alt="Categories Page 1" style="width: 100%;">
               </div>
-              <div class="carousel-slide active">
+              <div class="carousel-slide">
                 <img src="./static/images/categories_2.png" alt="Categories Page 2" style="width: 100%;">
               </div>
+            </div>
+            
+            <!-- 示例原点 -->
+            <div class="carousel-dots" style="text-align: center; margin-top: 10px;">
+              <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+              <span class="carousel-dot" onclick="goToSlide(1)"></span>
             </div>
           </div>
         </div>
@@ -196,6 +202,21 @@
         .carousel-button:hover {
           background-color: rgba(0, 0, 0, 0.8);
         }
+        .carousel-dots {
+          margin-top: 10px;
+        }
+        .carousel-dot {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          background-color: #bbb;
+          border-radius: 50%;
+          margin: 0 5px;
+          cursor: pointer;
+        }
+        .carousel-dot.active {
+          background-color: #3273dc;
+        }
       </style>
       
       <!-- 翻页功能脚本 -->
@@ -204,9 +225,18 @@
       
         function showSlide(index) {
           const slides = document.querySelectorAll('.carousel-slide');
+          const dots = document.querySelectorAll('.carousel-dot');
+      
           if (index >= slides.length) currentSlide = 0;
           if (index < 0) currentSlide = slides.length - 1;
+      
+          // 更新图片位置
           document.querySelector('.carousel-slides').style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+          // 更新原点状态
+          dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSlide);
+          });
         }
       
         function nextSlide() {
@@ -216,6 +246,11 @@
       
         function prevSlide() {
           currentSlide--;
+          showSlide(currentSlide);
+        }
+      
+        function goToSlide(index) {
+          currentSlide = index;
           showSlide(currentSlide);
         }
       </script>
