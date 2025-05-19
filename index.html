@@ -113,10 +113,18 @@
     <h2 class="title is-2">Abstract</h2>
     <div class="content">
       <p>
-        We present the <b>VUDG</b> dataset, a large-scale video understanding dataset designed for training and evaluating state-of-the-art video analysis models. 
-        The dataset consists of <b>10,000+</b> high-quality video clips annotated with rich metadata, including object bounding boxes, action labels, and temporal segmentation.
-        Our dataset is designed to address the challenges of video understanding, such as temporal modeling, object tracking, and action recognition. 
-        It is suitable for a wide range of tasks, including video classification, object detection, and temporal action localization.
+        <p>Video understanding has made remarkable progress in recent years, largely driven by advances in deep models and the availability of large-scale annotated datasets.</p>
+
+        <p>However, existing works typically ignore the inherent domain shifts encountered in real-world video applications, leaving domain generalization (DG) in video understanding underexplored.</p>
+
+        <p>Hence, we propose <strong>V</strong>ideo <strong>U</strong>nderstanding <strong>D</strong>omain <strong>G</strong>eneralization (<strong>VUDG</strong>), a novel dataset designed specifically for evaluating the DG performance in video understanding.</p>
+
+        <p>VUDG contains videos from 11 distinct domains that cover three types of domain shifts, and maintains semantic similarity across different domains to ensure fair and meaningful evaluation. We propose a multi-expert progressive annotation framework to annotate each video with both multiple-choice and open-ended question-answer pairs.</p>
+
+        <p>Extensive experiments on 9 representative large video-language models (LVLMs) and several traditional video question answering methods show that most models (including state-of-the-art LVLMs) suffer performance degradation under domain shifts.</p>
+
+        <p>These results highlight the challenges posed by VUDG and the difference in the robustness of current models to data distribution shifts. We believe VUDG provides a valuable resource for prompting future research in domain generalization video understanding.</p>
+ 
       </p>
     </div>
   </div>
