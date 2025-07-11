@@ -1,10 +1,11 @@
-Q1: What is the main character's goal?
-A1: The main character wants to find a hidden treasure.
-Q2: What obstacles does the character face?
-A2: The character faces traps and puzzles.
-Q3: Who helps the main character?
-A3: A friendly dog helps the main character.
-Q4: What is the final reward?
-A4: The final reward is a chest of gold coins.
-Q5: What lesson does the character learn?
-A5: The character learns the value of teamwork.
+Q1: What does the bunny do after pouring pancake batter into the pan?
+A1:	The bunny uses a spatula to flip the pancake.
+Q2: What color is the coffee cup?
+A2: The coffee cup is light green.
+Q3: What is being added to the stack of pancakes?
+A3: Butter and syrup.
+Q4: What did the bunny do before frying the pancake?
+A4: The bunny cracked two eggs into the bowl of mixture before frying the pancake.
+Q5: In which order did the bunny add the coffee powder and hot water to the cup?
+A5: The bunny first added the coffee powder to the cup and then added the hot water.
+
