@@ -1,10 +1,10 @@
-Q1: What is the main character's profession?
-A1: The main character is a detective.
-Q2: What mystery is being solved?
-A2: The mystery is a stolen painting.
-Q3: What clues are found?
-A3: The clues are a footprint and a torn piece of fabric.
-Q4: Who is the culprit?
+Q1: What are the characters doing with the ingredients?
+A1: Characters are cutting vegetables and fruits.
+Q2: What is the color of the bowl?
+A2: The bowl is blue.
+Q3: What is topping the rice?
+A3: An egg.
+Q4: Placing the yellow, round-shaped food inside the green container.
 A4: The culprit is the museum curator.
-Q5: What is the final outcome?
-A5: The painting is returned to its owner.
+Q5: Which ingredients are submerged in the cooking pan first?
+A5: Only white, rounded objects resembling rice are submerged first.
