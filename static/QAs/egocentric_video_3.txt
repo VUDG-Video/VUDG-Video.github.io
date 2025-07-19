@@ -1,0 +1,10 @@
+Q1: What action is performed on the paper with the brush?
+A1: The person is writing a quote with the brush.
+Q2: What are the changing colors of the letters as written?
+A2: Green, teal, purple, red, orange, yellow.
+Q3: What kind of object is in the person's hand?
+A3: The person is holding a paintbrush.
+Q4: What is the first color used to write?
+A4: Green is used first.
+Q5: Which words are written after “there is no”?
+A5: "innovation and creativity without failure" are written.

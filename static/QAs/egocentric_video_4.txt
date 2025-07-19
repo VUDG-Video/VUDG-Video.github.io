@@ -1,0 +1,10 @@
+Q1: What action does the person perform after taking bread slices?	
+A1: The person spreads chocolate on the bread slices.
+Q2: What shape is the plate on which the sandwich is being prepared?
+A2: The plate is a square with rounded corners.
+Q3: What object does the person use to cut the banana?
+A3: The person uses a knife to cut the banana.
+Q4: What happens after the person opens the bread bag?
+A4: Two slices of bread are pulled from the bread bag and placed on the plate.
+Q5: In which order are the banana and Nutella applied to the slices of bread?
+A5: Nutella is applied to both slices of bread before the banana is peeled.
